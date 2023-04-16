@@ -1,0 +1,27 @@
+
+.container {
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+}
+
+.text {
+    font-size: 1.2rem;
+    margin-right: 1rem;
+    color: #333;
+}
+
+
+.btn {
+    padding: 0.5rem 1rem;
+    background-color: #0077ff;
+    color: #fff;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn:hover {
+    background-color: #0057cb;
+}

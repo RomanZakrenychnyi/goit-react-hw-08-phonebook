@@ -1,0 +1,19 @@
+.container{
+    display: flex;
+    align-items: center;
+}
+
+/* Стилі для посилань */
+.link {
+    margin-right: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: #0077ff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 0.25rem;
+    transition: all 0.2s ease-in-out;
+}
+
+.link:hover {
+    background-color: #0057cb;
+}
