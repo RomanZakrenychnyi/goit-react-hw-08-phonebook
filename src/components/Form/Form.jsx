@@ -1,36 +1,32 @@
 import css from './Form.module.css';
-import { useState } from "react";
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/contacts/contactsThunk';
 
-
-
-export const Form = ()=> {
+export const Form = () => {
   const [name, setName] = useState('');
-  const [number, setNumber]= useState('')
+  const [number, setNumber] = useState('');
 
-const contacts = useSelector(state => state.contacts.contacts.items);
-  
+  const contacts = useSelector(state => state.contacts.contacts.items);
+
   const dispatch = useDispatch();
- 
 
-const handleChange = (e) => {
-  const { name } = e.target
-  switch (name) {
-    case 'name':
-      setName(e.target.value)
-      break;
-    case 'number':
-      setNumber(e.target.value)
-      break;
-    default:
-      throw new Error('error');
-  }
-  
+  const handleChange = e => {
+    const { name } = e.target;
+    switch (name) {
+      case 'name':
+        setName(e.target.value);
+        break;
+      case 'number':
+        setNumber(e.target.value);
+        break;
+      default:
+        throw new Error('error');
+    }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
+  const handleSubmit = e => {
+    e.preventDefault();
     const contact = {
       name: name,
       number: number,
@@ -42,31 +38,44 @@ const handleChange = (e) => {
       console.log(contact);
       dispatch(addContact(contact));
     }
-  }
-    return (<>
-  < form className={css.form} onSubmit={handleSubmit} >
-<label className={css.label} htmlFor="name">Name</label>
-        <input className={css.input}
+  };
+  return (
+    <>
+      <form className={css.form} onSubmit={handleSubmit}>
+        <label className={css.label} htmlFor="name">
+          Name
+        </label>
+        <input
+          className={css.input}
           value={name}
+          placeholder="ім'я"
           onChange={handleChange}
           type="text"
           name="name"
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-           required
+          required
         />
-        
-      <label className={css.label} htmlFor="number">Number</label>
-        <input className={css.input}
-          value={number}
-      onChange={handleChange}
-      type="tel"
-      name="number"
-      required
-      />
-      <button className={css.btn} type="submit">Add contact</button>
-      </form>
 
-  </>)
-  
-}
+        <label className={css.label} htmlFor="number">
+          Number
+        </label>
+        <input
+          className={css.input}
+          value={number}
+          onChange={handleChange}
+          type="tel"
+          name="number"
+          placeholder="телефон"
+          pattern="^[ 0-9]+$"
+          // minlength="13"
+          // maxlength="13"
+          required
+        />
+        <button className={css.btn} type="submit">
+          Add contact
+        </button>
+      </form>
+    </>
+  );
+};
